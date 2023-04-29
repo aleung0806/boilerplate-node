@@ -1,4 +1,4 @@
-const service  = require('../service/generic')
+const service  = require('../../service/generic')
 
 const create = async (req, res, next) => {
   const element = req.body.element

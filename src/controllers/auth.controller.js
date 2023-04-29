@@ -1,4 +1,4 @@
-const service = require('../service/auth')
+const service = require('../services/auth.service')
 
 const register = async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body

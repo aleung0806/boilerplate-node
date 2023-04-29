@@ -1,6 +1,6 @@
-const repo = require('../repository/user')
+const repo = require('../models/user')
 const _ = require('lodash')
-const user = require('../repository/user')
+const user = require('../models/user')
 
 const get = async (id) => {
   const user = await repo.get(id)

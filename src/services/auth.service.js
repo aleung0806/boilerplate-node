@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt')
-const userRepo = require('../repository/user')
-const projectRepo = require('../repository/project')
+const userRepo = require('../models/user')
+const projectRepo = require('../models/project')
 
 const _ = require('lodash')
 const saltRounds = 10
@@ -17,7 +17,6 @@ const register = async (firstName, lastName, email, password) => {
 const login = async (email, password) => {
   const user = await userRepo.getByEmail(email)
   const match = await bcrypt.compare(password, user.passwordHash)  
-
 
   if (match) {
     const projects = await projectRepo.getByUser(user.id)

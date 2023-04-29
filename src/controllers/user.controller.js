@@ -1,4 +1,4 @@
-const service  = require('../service/user')
+const service  = require('../services/user.service')
 
 const get = async (req, res, next) => {
   const user = req.session.user
