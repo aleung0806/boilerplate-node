@@ -1,14 +1,14 @@
-This is a node API boilerplate. 
+This is a node API boilerplate.
 
-Features: 
+Features:
+
 - Session storage with Redis
 - Authentication
 - DB migration
 
-Todo: 
+Todo:
+
 - Testing with Jest
 - Logging with Winston
 - Google Login
 - Email sending
-
-

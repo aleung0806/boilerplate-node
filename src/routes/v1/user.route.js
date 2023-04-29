@@ -1,11 +1,10 @@
-const express = require('express')
-const userController = require('../controllers/user.controller')
-const userRouter = express.Router()
+const express = require("express");
+// const userController = require("../../controllers/user.controller");
+const router = express.Router();
 
-userRouter.get('/', userController.get)
-userRouter.get('/projectId/:id', userController.getByProject)
-userRouter.put('/:id', userController.update)
-userRouter.delete('/:id', userController.remove)
+// router.get("/", userController.get);
+// router.get("/projectId/:id", userController.getByProject);
+// router.put("/:id", userController.update);
+// router.delete("/:id", userController.remove);
 
-
-module.exports = userRouter
+module.exports = router;

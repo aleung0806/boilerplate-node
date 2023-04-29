@@ -1,20 +1,17 @@
-const session = require('express-session');
-
+const session = require("express-session");
 
 module.exports = (sessionStore) => {
-  
   return session({
     store: sessionStore,
-    secret: 'mySecret',
+    secret: "mySecret",
     saveUninitialized: false,
     resave: false,
-    name: 'sessionId',
+    name: "sessionId",
     cookie: {
       secure: false,
-      httpOnly: true, 
-      maxAge: 1000 * 60 * 60 * 24, 
-      sameSite: 'lax',
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24,
+      sameSite: "lax",
     },
-  })
-}
-
+  });
+};

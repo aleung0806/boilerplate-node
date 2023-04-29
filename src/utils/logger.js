@@ -1,11 +1,8 @@
-const info = (...params) => {
-  console.log(...params)
-}
+const winston = require('winston');
+const config = require('../config/config');
 
-const error = (...params) => {
-  console.error(...params)
-}
+const logger = winston.createLogger({
 
-module.exports = {
-  info, error
-}
+});
+
+module.exports = logger;

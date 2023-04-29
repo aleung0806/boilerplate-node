@@ -1,16 +1,15 @@
-const logger = require('../logger')
-
+const logger = require("../logger");
 
 const errorHandler = (error, request, response, next) => {
-  console.log('errorHandler', error)
-  if (error === 'you must be logged in to do that'){
-    return response.sendStatus(401)
-  }else if (error === 'not found') {
-    return response.sendStatus(404)
-  }else if (error === 'you are not logged in') {
-    return response.sendStatus(401)
-  }else if (error === 'permission denied') {
-    return response.sendStatus(400)
+  console.log("errorHandler", error);
+  if (error === "you must be logged in to do that") {
+    return response.sendStatus(401);
+  } else if (error === "not found") {
+    return response.sendStatus(404);
+  } else if (error === "you are not logged in") {
+    return response.sendStatus(401);
+  } else if (error === "permission denied") {
+    return response.sendStatus(400);
   }
   // if (error.name === 'CastError') {
   //   return response.status(400).send({ error: 'malformatted id' })
@@ -21,14 +20,13 @@ const errorHandler = (error, request, response, next) => {
   //     error: 'invalid token'
   //   })
   // } else {
-    
+
   // }
 
   // next(error)
-  else{
-    response.status(400).send()
-
+  else {
+    response.status(400).send();
   }
-}
+};
 
-module.exports = errorHandler
+module.exports = errorHandler;
