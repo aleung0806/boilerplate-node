@@ -1,7 +1,8 @@
 const express = require("express");
 const helmet = require("helmet");
-
-const routes = require('./routes/v1');
+const logger = require("./utils/logger")
+const requestLogger = require('./middlewares/requestLogger')
+// const morgan = require('morgan')
 
 // const redis = require("redis");
 
@@ -9,8 +10,9 @@ const routes = require('./routes/v1');
 // const unknownEndpoint = require("./utils/middleware/unknownEndpoint");
 // const errorHandler = require("./utils/middleware/errorHandler");
 // const authenticate = require("./utils/middleware/authenticate");
+const authRouter = require("./routes/v1/auth.route");
 
-// const authRouter = require("./src/routes/auth.route");
+const morgan = require('./middlewares/morgan')
 // const userRouter = require("./src/routes/user.route");
 
 // const session = require("express-session");
@@ -34,11 +36,16 @@ const routes = require('./routes/v1');
 // const store = new redisStore({ client: redisClient });
 
 const app = express();
+app.use(morgan);
 
 app.use(helmet());
 app.use(express.json());
 
-app.use('/v1', routes);
+app.use(requestLogger);
+
+
+app.use('/v1', authRouter);
+
 
 // app.use(
 //   session({

@@ -7,8 +7,19 @@ Features:
 - DB migration
 
 Todo:
+Endpoints:
+- Register
+- Login
+- Logout
 
+Link mongodb
+Make schema for users
+Get Register, Login, Logout to work
+
+
+
+
+- Google Login
 - Testing with Jest
 - Logging with Winston
-- Google Login
 - Email sending
