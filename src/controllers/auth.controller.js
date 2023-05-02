@@ -1,9 +1,9 @@
-// const service = require("../services/auth.service");
+// const authService = require("../services/auth.service");
+const userService = require("../services/auth.service");
+
 const logger = require('../utils/logger')
 const register = async (req, res, next) => {
-  const { username, email, password } = req.body
-  logger.warn(`register controller ${JSON.stringify(req.baseUrl)}`)
-  res.send('hello')
+
   // const { firstName, lastName, email, password } = req.body;
 
   // if (!firstName || !lastName || !email || !password) {
