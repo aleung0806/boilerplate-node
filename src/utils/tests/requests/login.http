@@ -1,8 +1,7 @@
-POST http://localhost:3000/v1/register HTTP/1.1
+POST http://localhost:3000/v1/login HTTP/1.1
 content-type: application/json
 
 {
-  "username": "testUser",
   "email": "user22@email.com",
   "password": "password22"
 }

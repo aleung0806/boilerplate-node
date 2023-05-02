@@ -1,23 +1,20 @@
 // const authService = require("../services/auth.service");
 const userService = require("../services/user.service");
+const authService = require("../services/auth.service");
+
 const { StatusCodes } = require('http-status-codes')
 const logger = require('../utils/logger')
 
 const register = async (req, res, next) => {
   const user = await userService.create(req.body)
+
   res.status(StatusCodes.CREATED).send({user})
-  // const { firstName, lastName, email, password } = req.body;
+};
 
-  // if (!firstName || !lastName || !email || !password) {
-  //   return res.status(400).send("fields are missing");
-  // }
-
-  // try {
-  //   const user = await service.register(firstName, lastName, email, password);
-  //   res.status(201).json(user);
-  // } catch (err) {
-  //   res.status(400).send("email already exists");
-  // }
+const login = async (req, res, next) => {
+  const { email, password } = req.body
+  const user = await authService.login(email, password)
+  res.status(StatusCodes.OK).send({user})
 };
 
 // const login = async (req, res, next) => {
@@ -60,7 +57,7 @@ const verify = async (req, res, next) => {
 
 module.exports = {
   register,
-  // login,
+  login,
   // logout,
   verify,
 };

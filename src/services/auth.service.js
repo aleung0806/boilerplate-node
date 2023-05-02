@@ -1,33 +1,17 @@
-const bcrypt = require("bcrypt");
-const userRepo = require("../models/user");
-const projectRepo = require("../models/project");
-
-const _ = require("lodash");
-const saltRounds = 10;
-
-const register = async (firstName, lastName, email, password) => {
-  let passwordHash = await bcrypt.hash(password, saltRounds);
-  let user = await userRepo.create({
-    firstName,
-    lastName,
-    email,
-    passwordHash,
-  });
-  delete user.passwordHash;
-
-  return user;
-};
+const { StatusCodes } = require('http-status-codes')
+const ApiError = require('../utils/ApiError')
+const userService = require('./user.service')
 
 const login = async (email, password) => {
-  const user = await userRepo.getByEmail(email);
-  const match = await bcrypt.compare(password, user.passwordHash);
-
-  if (match) {
-    const projects = await projectRepo.getByUser(user.id);
-    return { ...user, projects };
-  } else {
-    throw new Error("credentials did not match");
+  const user = await userService.getByEmail(email)
+  if (user){
+    if (await user.passwordMatches(password)){
+      return user
+    }
   }
-};
+  throw new ApiError(StatusCodes.UNAUTHORIZED, 'Incorrect email or password')
+}
 
-module.exports = { register, login };
+module.exports = {
+  login
+}

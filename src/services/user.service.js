@@ -10,6 +10,10 @@ const create = async (user) => {
   return User.create(user)
 }
 
+const getByEmail = async (email) => {
+  return User.findOne({email})
+}
+
 
 
 // const get = async (id) => {
@@ -34,7 +38,8 @@ const create = async (user) => {
 // };
 
 module.exports = {
-  create
+  create,
+  getByEmail
   // get,
   // getByProject,
   // update,
