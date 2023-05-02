@@ -1,9 +1,11 @@
 // const authService = require("../services/auth.service");
-const userService = require("../services/auth.service");
-
+const userService = require("../services/user.service");
+const { StatusCodes } = require('http-status-codes')
 const logger = require('../utils/logger')
-const register = async (req, res, next) => {
 
+const register = async (req, res, next) => {
+  const user = await userService.create(req.body)
+  res.status(StatusCodes.CREATED).send({user})
   // const { firstName, lastName, email, password } = req.body;
 
   // if (!firstName || !lastName || !email || !password) {

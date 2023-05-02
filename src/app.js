@@ -2,6 +2,9 @@ const express = require("express");
 const helmet = require("helmet");
 const logger = require("./utils/logger")
 const requestLogger = require('./middlewares/requestLogger')
+const errorHandler = require('./middlewares/error')
+require('express-async-errors');
+
 // const morgan = require('morgan')
 
 // const redis = require("redis");
@@ -45,6 +48,7 @@ app.use(requestLogger);
 
 
 app.use('/v1', authRouter);
+app.use(errorHandler)
 
 
 // app.use(

@@ -1,10 +1,16 @@
-const repo = require("../models/user");
-const _ = require("lodash");
-const { User } = require('../models/user.model');
+const User = require('../models/user.model');
+const logger = require('../utils/logger');
+const { StatusCodes } = require('http-status-codes')
+const ApiError = require('../utils/ApiError')
 
 const create = async (user) => {
-  return User.create(user);
+  if (await User.emailExists(user.email)) {
+    throw new ApiError(StatusCodes.BAD_REQUEST, 'Email is already taken.')
+  }
+  return User.create(user)
 }
+
+
 
 // const get = async (id) => {
 //   const user = await repo.get(id);

@@ -19,16 +19,19 @@ const userSchema = mongoose.Schema(
       required: true,
       trim: true,
       minlength: 8,
-    },
-    role: {
-      type: String,
-      enum: roles,
-      default: 'user'
     }
   }
+
 )
 
+userSchema.statics.emailExists = async function (email) {
+  const user = await this.findOne({email: email})
+  return !!user
+}
+
+
 const User = mongoose.model('User', userSchema)
+
 
 module.exports = User;
 
