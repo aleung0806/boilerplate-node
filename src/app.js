@@ -6,6 +6,7 @@ const errorHandler = require('./middlewares/error')
 require('express-async-errors');
 const morgan = require('./middlewares/morgan')
 const session = require('./middlewares/session')
+const passport = require('./middlewares/passport')
 
 // const requestLogger = require("./utils/middleware/requestLogger");
 // const unknownEndpoint = require("./utils/middleware/unknownEndpoint");
@@ -23,7 +24,10 @@ const app = express();
 app.use(helmet());
 app.use(express.json());
 app.use(morgan)
-app.use(session)
+
+app.use(passport.initialize());
+app.use(passport.session())
+
 app.use(requestLogger);
 app.use('/v1', authRouter);
 app.use('/v1', userRouter);

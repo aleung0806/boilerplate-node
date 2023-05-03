@@ -1,22 +1,11 @@
 Node API Boilerplate
 
 Features:
-
-- Session storage with Redis
-- Authentication
-- DB migration
-
-Todo:
-Endpoints:
-- Register
-- Login
-- Logout
-
-Link mongodb
-Make schema for users
-Get Register, Login, Logout to work
-
-
+  Mongodb using Mongoose
+  Authentication with passport and express-sessions
+  Session storage with redis
+  Request validation with Joi
+  Logging with Winston
 
 
 - Google Login
