@@ -11,5 +11,11 @@ module.exports = {
   },
   jwt: {
     secret: process.env.JWT_SECRET
+  },
+  redis: {
+    url: process.env.REDIS_URL
+  },
+  session: {
+    secret: process.env.SESSION_SECRET
   }
 }

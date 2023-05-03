@@ -11,8 +11,15 @@ const login = Joi.object({
   password: Joi.string().required()
 })
 
+const logout = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().required()
+})
+
+
 
 module.exports = {
   register,
   login,
+  logout,
 }

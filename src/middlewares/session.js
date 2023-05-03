@@ -1,17 +1,16 @@
 const session = require("express-session");
+const config = require('../config/config')
+const { redisStore } = require('../db/redis')
 
-module.exports = (sessionStore) => {
-  return session({
-    store: sessionStore,
-    secret: "mySecret",
+
+module.exports = session({
+    store: redisStore,
+    secret: config.session.secret,
     saveUninitialized: false,
     resave: false,
     name: "sessionId",
     cookie: {
       secure: false,
-      httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24,
       sameSite: "lax",
     },
   });
-};

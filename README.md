@@ -1,4 +1,4 @@
-This is a node API boilerplate.
+Node API Boilerplate
 
 Features:
 

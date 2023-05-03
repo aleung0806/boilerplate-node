@@ -1,9 +1,17 @@
 const logger = require("../utils/logger");
+const morgan = require('morgan')
 
-const requestLogger = (request, response, next) => {
+
+const requestLogger = (req, res, next) => {
   
-  logger.info(JSON.stringify(request.path))
+  if (req.session){
+    logger.info(`session: ${JSON.stringify(req.session.user)}`)
+  }
   next();
 };
 
 module.exports = requestLogger;
+
+
+
+

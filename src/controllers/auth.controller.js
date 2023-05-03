@@ -7,15 +7,23 @@ const logger = require('../utils/logger')
 
 const register = async (req, res, next) => {
   const user = await userService.create(req.body)
-
   res.status(StatusCodes.CREATED).send({user})
 };
 
 const login = async (req, res, next) => {
   const { email, password } = req.body
-  const user = await authService.login(email, password)
+  const user = await authService.verify(email, password);
+  req.session.user = user
   res.status(StatusCodes.OK).send({user})
 };
+
+const logout = async (req, res, next) => {
+  const { email, password } = req.body
+  const user = await authService.verify(email, password);
+  await req.session.destroy()
+  res.status(StatusCodes.OK).send('user is logged out')
+};
+
 
 // const login = async (req, res, next) => {
 //   const { email, password } = req.body;
@@ -58,6 +66,6 @@ const verify = async (req, res, next) => {
 module.exports = {
   register,
   login,
-  // logout,
+  logout,
   verify,
 };
