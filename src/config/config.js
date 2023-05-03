@@ -17,5 +17,10 @@ module.exports = {
   },
   session: {
     secret: process.env.SESSION_SECRET
+  },
+  email: {
+    username: process.env.SMTP_USERNAME,
+    password: process.env.SMTP_PASSWORD
   }
+
 }
