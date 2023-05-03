@@ -6,9 +6,11 @@ Features:
   Session storage with redis
   Request validation with Joi
   Logging with Winston
+  Email and password management 
 
 
+Connect to other services:
 - Google Login
-- Testing with Jest
-- Logging with Winston
-- Email sending
+- Auth0
+- Email sending with AWS SES
+- deploy with AWS
