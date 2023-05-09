@@ -9,6 +9,9 @@
     "dev": "nodemon index.js",
     "test": "NODE_ENV=test jest --verbose --runInBand"
   },
+  "jest": {
+    "globalTeardown": "./src/utils/tests/teardown.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -33,6 +36,7 @@
     "nodemailer": "^6.9.1",
     "nodemon": "^2.0.19",
     "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
     "pg": "^8.7.3",
     "redis": "^4.2.0",
     "winston": "^3.8.2"

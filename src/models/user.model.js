@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt')
 const config = require('../config/config')
 
-const userSchema = mongoose.Schema(
+const userSchema = mongoose.Schema({
   {
     username: {
       type: String, 
@@ -22,8 +22,16 @@ const userSchema = mongoose.Schema(
       trim: true,
       minlength: 8,
     }
+  },
+  {
+    toJSON: {
+      transform: 
+    }
+  },
+  {
+    timestamps: true
   }
-
+}
 )
 
 userSchema.statics.emailExists = async function (email) {
@@ -37,12 +45,15 @@ userSchema.methods.passwordMatches = async function (password) {
 }
 
 userSchema.pre('save', async function (next) {
+  //hash password
   let user = this;
-  if (!user.isModified('password')) {
-    return next()
+  if (user.isModified('password')) {
+    const hash = await bcrypt.hash(user.password, 10)
+    user.password = hash
   }
-  const hash = await bcrypt.hash(user.password, 10)
-  user.password = hash
+
+  //make email all lowercase
+  user.email = user.email.toLowerCase()
 })
 
 

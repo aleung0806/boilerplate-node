@@ -12,7 +12,7 @@ let transport = nodemailer.createTransport({
 
 transport
   .verify()
-  .then(() => logger.info('Connected to email server'))
+  .then(() => logger.info('connected to email server'))
   .catch((err) => logger.error(`Unable to connect to email server. ${err}`));
 
 const sendEmail = async (email, subject, text) => {

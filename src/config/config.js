@@ -2,25 +2,28 @@ const dotenv = require('dotenv');
 const path = require('path');
 
 dotenv.config({ path: path.join(__dirname, '../../.env') });
-
+const env = process.env
+const testEnv = env.NODE_ENV === 'test'
 module.exports = {
-  env: process.env.NODE_ENV,
-  port: process.env.PORT, 
+  env: env.NODE_ENV,
+  port: env.PORT, 
   mongoose: {
-    url: process.env.MONGODB_URL
+    url: testEnv 
+      ? env.MONGODB_TEST_URL
+      : env.MONGODB_URL
   },
   jwt: {
-    secret: process.env.JWT_SECRET
+    secret: env.JWT_SECRET
   },
   redis: {
-    url: process.env.REDIS_URL
+    url: env.REDIS_URL
   },
   session: {
-    secret: process.env.SESSION_SECRET
+    secret: env.SESSION_SECRET
   },
   email: {
-    username: process.env.SMTP_USERNAME,
-    password: process.env.SMTP_PASSWORD
+    username: env.SMTP_USERNAME,
+    password: env.SMTP_PASSWORD
   }
 
 }

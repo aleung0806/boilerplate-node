@@ -14,25 +14,26 @@ const passport = require('./middlewares/passport')
 // const authenticate = require("./utils/middleware/authenticate");
 const authRouter = require("./routes/v1/auth.route");
 const testRouter = require("./routes/v1/test.route");
-const userRouter = require('./routes/v1/user.route')
+const userRouter = require('./routes/v1/user.route');
+
 
 // const userRouter = require("./src/routes/user.route");
-
-
 
 const app = express();
 app.use(helmet());
 app.use(express.json());
 app.use(morgan)
+app.use(session)
 
 app.use(passport.initialize());
-app.use(passport.session())
+app.use(passport.session());
+app.post('/v1/passport-login', passport.authenticate('local'));
+
 
 app.use(requestLogger);
 app.use('/v1', authRouter);
 app.use('/v1', userRouter);
 app.use('/v1', testRouter);
-
 app.use(errorHandler)
 
 

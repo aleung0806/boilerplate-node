@@ -4,6 +4,8 @@ const authService = require("../services/auth.service");
 
 const { StatusCodes } = require('http-status-codes')
 const logger = require('../utils/logger')
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 const register = async (req, res, next) => {
   const user = await userService.create(req.body)
@@ -23,6 +25,8 @@ const logout = async (req, res, next) => {
   await req.session.destroy()
   res.status(StatusCodes.OK).send('user is logged out')
 };
+
+
 
 
 // const login = async (req, res, next) => {
