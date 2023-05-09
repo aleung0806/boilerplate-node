@@ -39,8 +39,6 @@ const userSchema = mongoose.Schema(
   
 )
 
-
-
 userSchema.statics.emailExists = async function (email) {
   const user = await this.findOne({email: email})
   return !!user
