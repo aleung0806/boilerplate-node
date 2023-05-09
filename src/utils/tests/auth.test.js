@@ -4,6 +4,7 @@ const app = require("../../app");
 const api = supertest(app);
 const User = require('../../models/user.model')
 const config = require('../../config/config')
+const { redisClient } = require('../../db/redis')
 
 const user1 = {
   email: 'user1@test.com',
@@ -89,6 +90,7 @@ describe('/v1/login', () => {
       email: user1.email,
       username: user1.username
     })
+    expect(res.header['set-cookie'][0]).toMatch(/^sessionId=/)
   })
 
 
@@ -117,8 +119,6 @@ describe('/v1/login', () => {
       expect(res.body.user).toBeUndefined()
   })
 })
-
-
 
 afterAll(async () => {
   await mongoose.connection.close()
