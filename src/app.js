@@ -15,6 +15,8 @@ const passport = require('./middlewares/passport')
 const authRouter = require("./routes/v1/auth.route");
 const testRouter = require("./routes/v1/test.route");
 const userRouter = require('./routes/v1/user.route');
+const docRouter = require('./routes/v1/doc.route');
+
 
 
 // const userRouter = require("./src/routes/user.route");
@@ -33,6 +35,7 @@ app.post('/v1/passport-login', passport.authenticate('local'));
 app.use(requestLogger);
 app.use('/v1', authRouter);
 app.use('/v1', userRouter);
+app.use('/v1', docRouter);
 app.use('/v1', testRouter);
 app.use(errorHandler)
 
