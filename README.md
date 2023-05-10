@@ -18,3 +18,10 @@ Connect to other services:
 Todo:
 - Docker support
 - testing with jest
+
+To investigate:
+regex
+mongoose guide - model vs doc vs collection etc
+instance of, classes, prototype methods, etc
+winston logging debug
+

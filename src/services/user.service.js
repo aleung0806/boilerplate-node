@@ -10,38 +10,43 @@ const create = async (user) => {
   return User.create(user)
 }
 
+const getAll = async () => {
+  return await User.find({})
+}
+
+const getById = async (id) => {
+  const user = await User.findById(id)
+  if (!user){
+    throw new ApiError(StatusCodes.NOT_FOUND, 'User not found')
+  }
+  return user
+}
+
 const getByEmail = async (email) => {
   return User.findOne({email})
 }
 
+const updateById = async (id, update) => {
+  return User.findByIdAndUpdate(id, update)
+}
 
+const deleteById = async (id) => {
+  return User.delete({id})
+}
 
-// const get = async (id) => {
-//   const user = await repo.get(id);
-//   return _.pick(user, ["id", "firstName", "lastName", "email"]);
-// };
-
-// const getByProject = async (projectId) => {
-//   const users = await repo.get(projectId);
-//   return users.map((user) =>
-//     _.pick(user, ["id", "firstName", "lastName", "email"])
-//   );
-// };
-
-// const update = async (id, element) => {
-//   const user = await repo.update(id, element);
-//   return _.pick(user, ["id", "firstName", "lastName", "email"]);
-// };
-
-// const remove = async (id) => {
-//   return await repo.remove(id);
-// };
+const deleteAll = async () => {
+  return User.deleteMany({})
+}
 
 module.exports = {
   create,
-  getByEmail
-  // get,
-  // getByProject,
-  // update,
-  // remove,
+  getById,
+  getByEmail,
+  getAll,
+  updateById,
+  deleteById,
+  deleteAll,
 };
+
+
+

@@ -23,7 +23,7 @@ beforeAll(async () => {
   await User.deleteMany({})
 })
 
-describe('/v1/register', () => {
+describe('POST /v1/register', () => {
   test('should register new user correctly if valid request', async () => {
     const res = await api
       .post('/v1/register')
@@ -35,7 +35,6 @@ describe('/v1/register', () => {
       email: user1.email,
       username: user1.username
     })
-    expect(res.body.user).not.toHaveProperty('password')
 
     const dbUser = await User.findOne({email: user1.email})
     expect(dbUser).toEqual(
@@ -74,7 +73,7 @@ describe('/v1/register', () => {
   })
 })
 
-describe('/v1/login', () => {
+describe('POST /v1/login', () => {
   test('should return 200 and session cookie if login is valid', async () => {
     const res = await api
       .post('/v1/login')

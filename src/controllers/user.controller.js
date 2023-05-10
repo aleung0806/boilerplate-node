@@ -1,86 +1,50 @@
 const service = require("../services/user.service");
 
-const get = async (req, res, next) => {
-  const user = req.session.user;
-  const id = user.id;
-  console.log(`request for ${id}`);
+const { StatusCodes } = require('http-status-codes')
+const logger = require('../utils/logger')
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
-  try {
-    const element = await service.get(id, req.session.id);
-    res.status(200).json(element);
-  } catch (err) {
-    next(err);
-  }
+const userService = require('../services/user.service')
+
+const create = async (req, res, next) => {
+  const user = await userService.create(req.body)
+  res.status(StatusCodes.CREATED).send({user})
 };
 
-const getByProject = async (req, res, next) => {
-  const userId = req.session.user.id;
-  console.log(`request for ${projectId}`);
-
-  const permitted = await permissionService.isMember(
-    userId,
-    projectId,
-    "project"
-  );
-  if (!permitted) {
-    return res.status(401).send("permission denied");
-  }
-
-  try {
-    const element = await service.getByProject(projectId);
-    res.status(200).json(element);
-  } catch (err) {
-    next(err);
-  }
+const getAll = async (req, res, next) => {
+  const users = await userService.getAll()
+  res.status(StatusCodes.OK).send({users})
 };
 
-const update = async (req, res, next) => {
-  const id = req.params.id;
-  const element = req.body;
-  const sessionId = req.session.user.id;
-  console.log(
-    `element update ${id} ${sessionId} with ${JSON.stringify(element)}`
-  );
-
-  if (sessionId != id) {
-    res.status(401).send("permission denied");
-    return;
-  }
-
-  if (element.id || element.email) {
-    res.status(400).send("cannot change userId or email");
-  }
-
-  try {
-    const updatedElement = await service.update(id, element);
-    res.status(200).json(updatedElement);
-  } catch (err) {
-    next(err);
-  }
+const deleteAll = async (req, res, next) => {
+  await userService.deleteAll();
+  res.status(StatusCodes.NO_CONTENT).send();
 };
 
-const remove = async (req, res, next) => {
-  const id = req.params.id;
-  const { userId, email } = req.session;
-  console.log(`element remove ${id} by ${email} (id ${userId})`);
-
-  if (req.session.user.id != id) {
-    res.status(401).send("permission denied");
-    return;
-  }
-
-  try {
-    await service.remove(id);
-    req.session.destroy((err) => next(err));
-    res.status(200).send("user deleted");
-  } catch (err) {
-    next(err);
-  }
+const getById = async (req, res, next) => {
+  logger.debug(req.params.id)
+  const user = await userService.getById(req.params.id)
+  res.status(StatusCodes.OK).send({user})
 };
+
+const updateById = async (req, res, next) => {
+  const user = await userService.updateById(req.params.id, req.body)
+  res.status(StatusCodes.OK).send({user})
+};
+
+const deleteById = async (req, res, next) => {
+  await userService.deleteById(req.body)
+  res.status(StatusCodes.NO_CONTENT).send()
+};
+
 
 module.exports = {
-  get,
-  getByProject,
-  update,
-  remove,
+  getAll,
+  create,
+  deleteAll,
+  getById,
+  updateById,
+  deleteById,
+
 };

@@ -2,6 +2,7 @@ const winston = require('winston');
 const config = require('../config/config');
 
 const logger = winston.createLogger({
+  level: 'debug',
   format: winston.format.combine(
     winston.format.colorize(),
     winston.format.printf(({ level, message }) => `${level}: ${message}`)
