@@ -23,7 +23,6 @@ const deleteAll = async (req, res, next) => {
 };
 
 const getById = async (req, res, next) => {
-  logger.debug(req.params.id)
   const user = await userService.getById(req.params.id)
   res.status(StatusCodes.OK).send({user})
 };
