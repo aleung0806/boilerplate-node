@@ -27,7 +27,6 @@ app.use(helmet());
 app.use(express.json());
 app.use(morgan)
 app.use(session)
-app.use(sessionLogger);
 
 
 // app.use(passport.initialize());
