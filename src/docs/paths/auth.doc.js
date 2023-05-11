@@ -1,5 +1,6 @@
 const register = {
   summary: "register new user",
+  operationId: 'register',
   tags: [ "auth" ],
   requestBody: {
     required: true,
@@ -33,6 +34,7 @@ const register = {
 
 const login = {
   summary: "Logs in user. starts session.",
+  operationId: 'login',
   tags: [ "auth" ],
   requestBody: {
     required: true,
@@ -62,6 +64,7 @@ const login = {
 
 const logout = {
   summary: "Logs user out of current session.",
+  operationId: 'logout',
   tags: [ "auth" ],
   responses: {
     200: {

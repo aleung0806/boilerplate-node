@@ -1,7 +1,6 @@
 const express = require("express");
 const helmet = require("helmet");
 const logger = require("./utils/logger")
-const sessionLogger = require('./middlewares/sessionLogger')
 const error = require('./middlewares/error')
 require('express-async-errors');
 const morgan = require('./middlewares/morgan')

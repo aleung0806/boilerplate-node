@@ -1,5 +1,6 @@
-const post = {
+const createUser = {
   summary: "add a new user",
+  operationId: 'createUser',
   tags: [ "users" ],
   requestBody: {
     required: true,
@@ -28,11 +29,10 @@ const post = {
   }
 }
 
-const get = {
+const getAllUsers = {
   summary: "get all users",
-  tags: [
-    "users"
-  ],
+  operationId: 'getAllUsers',
+  tags: [ "users" ],
   responses: {
     200: {
       description: "OK",
@@ -47,8 +47,9 @@ const get = {
   }
   }
 
-const deleteUsers = {
+const deleteAllUsers = {
   summary: "delete all users",
+  operationId: 'deleteAllUsers',
   tags: [ "users" ],
   responses: {
     204: {
@@ -60,8 +61,9 @@ const deleteUsers = {
   }
 }
 
-const idGet = {
+const getUserById = {
   summary: "get user by id",
+  operationId: 'getUserById',
   tags: [ "users" ],
   responses: {
     200: {
@@ -76,11 +78,10 @@ const idGet = {
   }
 }
 
-const idPut =  {
+const updateUserById =  {
   summary: "update user by id",
-  tags: [
-    "users"
-  ],
+  operationId: 'updateUserById',
+  tags: [ "users" ],
   responses: {
     200: {
       description: "OK",
@@ -90,11 +91,10 @@ const idPut =  {
     }
   }
 }
-const idDelete = {
+const deleteUserById = {
   summary: "delete user by id",
-  tags: [
-    "users"
-  ],
+  operationId: 'deleteUserById',
+  tags: [ "users"],
   responses: {
     204: {
       description: "No content"
@@ -104,13 +104,13 @@ const idDelete = {
 
 module.exports = {
   users: {
-    post: post,
-    get: get,
-    delete: deleteUsers
+    post: createUser,
+    get: getAllUsers,
+    delete: deleteAllUsers
   },
   '/users/{id}': {
-    get: idGet,
-    put: idPut,
-    delete: idDelete
+    get: getUserById,
+    put: updateUserById,
+    delete: deleteUserById
   }
 }
