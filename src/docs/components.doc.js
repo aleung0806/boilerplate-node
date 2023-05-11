@@ -4,7 +4,8 @@ const schemas = {
     properties: {
       id: { type: "string" },
       email: { type: "string" },
-      username: { type: "string" }
+      username: { type: "string" },
+      role: { type: "string "}
     }
   },
   Error: {
@@ -16,26 +17,26 @@ const schemas = {
   }
 }
 const responses = {
-  TakenEmail: {
-    description: "Email is already taken",
+  BadRequest: { //400
+    description: "Bad request",
     content: { 'application/json': {
         schema: { $ref: "#/components/schemas/Error"}
     }}
   },
-  Unauthorized: {
+  Unauthorized: { //401
     description: "Unauthorized",
     content: { 'application/json': {
       schema: { $ref: "#/components/schemas/Error" }
     }}
   },
-  Forbidden: {
+  Forbidden: { //403
     description: "Forbidden",
     content: { 'application/json': {
       schema: { $ref: "#/components/schemas/Error" }
     }}
   },
-  NotFound: {
-    description: "NotFound",
+  NotFound: { //404
+    description: "Not found",
     content: { 'application/json': {
       schema: { $ref: "#/components/schemas/Error" }
     }}

@@ -22,6 +22,9 @@ const post = {
           schema: { $ref: "#/components/schemas/User" }
       }}
     }
+  },
+  security: {
+    OAuth2: ['admin']
   }
 }
 
@@ -38,24 +41,28 @@ const get = {
           items: { $ref: "#/components/schemas/User"}
         }
       }}
+  },
+  security: {
+    OAuth2: ['admin']
   }
   }
 
-const deleteUser = {
+const deleteUsers = {
   summary: "delete all users",
   tags: [ "users" ],
   responses: {
     204: {
       description: "No content"
     }
+  },
+  security: {
+    OAuth2: ['admin']
   }
 }
 
 const idGet = {
   summary: "get user by id",
-  tags: [
-    "users"
-  ],
+  tags: [ "users" ],
   responses: {
     200: {
       description: "OK",
@@ -63,6 +70,9 @@ const idGet = {
         schema: { $ref: "#/components/schemas/User" }
     }}
     }
+  },
+  security: {
+    OAuth2: ['admin', 'user']
   }
 }
 
@@ -96,7 +106,7 @@ module.exports = {
   users: {
     post: post,
     get: get,
-    delete: deleteUser
+    delete: deleteUsers
   },
   '/users/{id}': {
     get: idGet,

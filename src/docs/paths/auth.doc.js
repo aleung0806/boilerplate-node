@@ -22,14 +22,17 @@ const register = {
           schema: { $ref: "#/components/schemas/User" }
       }}
     },
-    400:{ 
-      schema: { $ref: "#/components/schemas/User" }
+    400: {
+      description: 'Email is already in use.'
+    },
+    400: {
+      description: 'Validation exception.'
     }
   }
 }
 
 const login = {
-  summary: "log in user",
+  summary: "Logs in user. starts session.",
   tags: [ "auth" ],
   requestBody: {
     required: true,
@@ -50,8 +53,23 @@ const login = {
       content: { 'application/json': {
           schema: { $ref: "#/components/schemas/User" }
         }
-      }}
+    }},
+    401: {
+      description: "Incorrect email or password",
+    }
   }
+}
+
+const logout = {
+  summary: "Logs user out of current session.",
+  tags: [ "auth" ],
+  responses: {
+    200: {
+      description: "Logged Out",
+    }},
+    401: {
+      description: "Incorrect email or password",
+    }
 }
 
 module.exports = {

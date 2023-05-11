@@ -22,6 +22,10 @@ const userSchema = mongoose.Schema(
         required: true,
         trim: true,
         minlength: 8,
+      },
+      roles: {
+        type: [ {type: String }],
+        default: ['user']
       }
     },
     {
@@ -31,7 +35,8 @@ const userSchema = mongoose.Schema(
           return {
             id: ret._id,
             username: ret.username,
-            email: ret.email
+            email: ret.email,
+            roles: ret.roles
           }
         }
       }
