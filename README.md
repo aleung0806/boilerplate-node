@@ -6,14 +6,19 @@ Features:
 - **NoSQL database** using [Mongoose]
 - **Authentication** with cookie-based sessions
   - Role-based and action-based permissions
-  - session storage using redis
+  - session storage using [redis]
 
-- **Request validation** with Joi
+- **Request validation** with [Joi]
 - **Security** 
-  - set security HTTP headers with helmet
-  - sanitize request data with xss-clean and sanitize-mongoose
+  - set security HTTP headers with [helmet]
+  - sanitize request data with [xss-clean] and [sanitize-mongoose]
 - **Docker support**
 - **OpenAPI documentation** with swagger-ui-express 
+
+## API Documentation
+Go to 'http://localhost:3000/v1/docs' to view the documentation page generated using [swagger].
+
+### 
 
 
 
