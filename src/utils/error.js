@@ -1,3 +1,0 @@
-const ApiError = (error) => {
-  return;
-};

@@ -4,12 +4,18 @@ const ApiError = require('../utils/ApiError')
 
 
 const validate = (schema) => (req, res, next) => {
-  const { error, value } = schema.validate(req.body, {abortEarly: false})
-  if (error) {
-    const errorMessage = error.details.map((details => details.message)).join('. ')
-    return next(new ApiError(StatusCodes.BAD_REQUEST, errorMessage))
+  const values = {}
+  const errors = []
+  Object.keys(schema).forEach(key => {
+    const { value, error } = schema[key].validate(req[key], {abortEarly: false})
+    logger.debug(`key: ${key}`)
+    if (error) { errors.push(error) }
+    Object.assign(values, value)
+  })
+  if (errors.length){
+    const message = errors.join('. ')
+    return next(new ApiError(StatusCodes.BAD_REQUEST, message))
   }
-
   return next();
 };
 
