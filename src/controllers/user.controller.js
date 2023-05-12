@@ -23,6 +23,7 @@ const deleteAll = async (req, res, next) => {
 };
 
 const getById = async (req, res, next) => {
+  logger.debug(`req.values: ${JSON.stringify(req.values, null, 2)}`)
   const user = await userService.getById(req.params.id)
   res.status(StatusCodes.OK).send({user})
 };

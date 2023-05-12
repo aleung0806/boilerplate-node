@@ -1,12 +1,19 @@
-Node API Boilerplate
+# Node Express Mongo REST API Boilerplate
+
+A template for building an API using Node, Express and Mongodb
 
 Features:
-- Mongodb using Mongoose
-- Authentication with passport and express-sessions
-- Session storage with redis
-- Request validation with Joi
-- Logging with Winston
-- Email and password management 
+- **NoSQL database** using Mongoose
+- **Authentication** with cookie-based sessions
+- **Session storage** using redis
+- **Request validation** with Joi
+- **OpenAPI documentation** with swagger-ui-express
+- **Security** 
+  - set security HTTP headers with helmet
+  - Sanitize request data with xss-clean and sanitize-mongoose
+- **Docker support**
+
+
 
 
 Connect to other services:

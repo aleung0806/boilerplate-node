@@ -16,6 +16,7 @@ const validate = (schema) => (req, res, next) => {
     const message = errors.join('. ')
     return next(new ApiError(StatusCodes.BAD_REQUEST, message))
   }
+  req.values = values
   return next();
 };
 

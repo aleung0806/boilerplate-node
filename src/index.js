@@ -11,7 +11,6 @@ mongoose.connect(config.mongoose.url).then(() => {
   logger.info('connected to mongoDB')
 });
 
-
 server.listen(port, () => {
   logger.info(`server running on port ${port}`);
 });
