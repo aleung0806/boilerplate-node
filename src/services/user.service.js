@@ -27,7 +27,7 @@ const getByEmail = async (email) => {
 }
 
 const updateById = async (id, update) => {
-  return User.findByIdAndUpdate(id, update)
+  return User.findByIdAndUpdate(id, update, {new: true})
 }
 
 const deleteById = async (id) => {
@@ -36,6 +36,10 @@ const deleteById = async (id) => {
 
 const deleteAll = async () => {
   return User.deleteMany({})
+}
+
+const updateRoleById = async (id, role) => {
+  return User.findByIdAndUpdate(id, role, {new: true})
 }
 
 module.exports = {

@@ -110,7 +110,7 @@ module.exports = {
   },
   '/users/{id}': {
     get: getUserById,
-    put: updateUserById,
+    patch: updateUserById,
     delete: deleteUserById
   }
 }

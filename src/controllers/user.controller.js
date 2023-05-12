@@ -37,6 +37,10 @@ const deleteById = async (req, res, next) => {
   res.status(StatusCodes.NO_CONTENT).send()
 };
 
+const updateRoleById = async (req, res, next) => {
+  const user = await userService.updateRoleById(req.params.id, req.body)
+  res.status(StatusCodes.OK).send({user})
+}
 
 module.exports = {
   getAll,
@@ -45,5 +49,5 @@ module.exports = {
   getById,
   updateById,
   deleteById,
-
+  updateRoleById,
 };

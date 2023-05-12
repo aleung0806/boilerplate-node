@@ -4,6 +4,7 @@ const authSchema = require('../../middlewares/validationSchemas/auth.schema')
 const validate = require('../../middlewares/validate')
 const passport = require('passport')
 const router = express.Router()
+const authorize = require('../../middlewares/authorize')
 
 router.post('/register', validate(authSchema.register), authController.register)
 router.post('/login', validate(authSchema.login), authController.login)

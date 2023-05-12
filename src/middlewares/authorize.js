@@ -4,17 +4,20 @@ const ApiError = require('../utils/ApiError')
 const { StatusCodes } = require('http-status-codes')
 
 const authorize = (roles) => async (req, res, next) => {
+  if (!req.session.user){
+    return next(new ApiError(StatusCodes.FORBIDDEN, 'You must be logged in.'));
+  }
   const id = req.session.user.id
   const user = await userService.getById(id)
 
-  // check for role match ['admin', 'user', 'owner', etc]
+  // role-based match ['admin', 'user', 'owner', etc]
   for (const role of roles){
     if(user.roles.includes(role)){
       return next();
     }
   }
 
-  // check for action match ['self', 'project', etc]
+  // action-based match ['self', 'project', etc]
   if (roles.includes('self')){
     if (user.id === req.params.id){
       logger.debug('user is self')

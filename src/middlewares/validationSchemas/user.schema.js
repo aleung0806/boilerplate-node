@@ -26,8 +26,7 @@ const updateById = {
   }),
   body: Joi.object({
     email: Joi.string().email().required(),
-    username: Joi.string().required(),
-    roles: Joi.array().items(Joi.string())
+    username: Joi.string().required()
   })
 }
 
@@ -37,11 +36,21 @@ const deleteById = {
   })
 }
 
+const updateRoleById = {
+  params: Joi.object({
+    id: Joi.string()
+  }),
+  body: Joi.object({
+    roles: Joi.array().items(Joi.string())
+  })
+}
+
 module.exports = {
   create,
   getAll,
   deleteAll,
   getById,
   updateById,
-  deleteById
+  deleteById,
+  updateRoleById
 }

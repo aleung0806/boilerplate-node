@@ -26,6 +26,7 @@ app.use(session)
 // app.post('/v1/passport-login', passport.authenticate('local'));
 
 app.use('/v1', authRouter);
+
 app.use('/v1', userRouter);
 app.use('/v1', docsRouter);
 app.use('/v1', testRouter);

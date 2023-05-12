@@ -12,7 +12,13 @@ router.route('/users')
 
 router.route("/users/:id")
   .get(validate(userSchema.getById), authorize(['admin', 'self']), userController.getById)
-  .put(validate(userSchema.updateById), authorize(['admin','self']), userController.updateById)
+  .patch(validate(userSchema.updateById), authorize(['admin','self']), userController.updateById)
   .delete(validate(userSchema.deleteById), authorize(['admin', 'self']), userController.deleteById)
+
+router.route("/users/:id/role")
+  .put(validate(userSchema.updateRoleById), authorize(['admin']), userController.updateRoleById)
+
+
+
 
 module.exports = router;

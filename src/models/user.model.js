@@ -41,7 +41,6 @@ const userSchema = mongoose.Schema(
         }
       }
     }
-  
 )
 
 userSchema.statics.emailExists = async function (email) {
@@ -65,7 +64,6 @@ userSchema.pre('save', async function (next) {
   //make email all lowercase
   user.email = user.email.toLowerCase()
 })
-
 
 const User = mongoose.model('User', userSchema)
 
