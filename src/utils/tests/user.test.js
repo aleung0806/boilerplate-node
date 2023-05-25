@@ -40,7 +40,6 @@ beforeEach(async () => {
   await User.insertMany(users)
 })
 
-
 describe('/v1/users', () => { 
   describe('GET /v1/users', () => {
     test('should return all users on correct request', async () => {
@@ -139,7 +138,6 @@ describe('/v1/users', () => {
       expect(dbUsers).toHaveLength(0)
     }) 
   })
-
 })
 
 afterAll(async () => {

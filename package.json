@@ -8,7 +8,7 @@
     "migrate": "npx knex migrate:latest --knexfile db/knexfile.js",
     "dev": "nodemon index.js",
     "test": "NODE_ENV=test jest --verbose --runInBand",
-    "docker:dev": "sudo docker-compose docker-compose.yml up"
+    "docker:dev": "sudo docker-compose -f docker-compose.yml up"
   },
   "jest": {
     "globalTeardown": "./src/utils/tests/teardown.js"

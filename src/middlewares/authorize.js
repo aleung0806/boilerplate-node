@@ -2,6 +2,7 @@ const logger = require("../utils/logger")
 const userService = require('../services/user.service')
 const ApiError = require('../utils/ApiError')
 const { StatusCodes } = require('http-status-codes')
+const permissions = require('../config/roles')
 
 const authorize = (roles) => async (req, res, next) => {
   if (!req.session.user){

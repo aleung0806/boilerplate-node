@@ -26,7 +26,13 @@ const logout = async (req, res, next) => {
   res.status(StatusCodes.OK).send('user is logged out')
 };
 
-
+const verify = async (req, res, next) => {
+  if(req.session === null){
+    res.status(StatusCodes.OK)
+  }else{
+    res.status(StatusCodes.OK).send(req.session.user)
+  }
+};
 
 
 // const login = async (req, res, next) => {
@@ -62,10 +68,6 @@ const logout = async (req, res, next) => {
 //     res.send("not logged in");
 //   }
 // };
-
-const verify = async (req, res, next) => {
-  logger.warn('verify controller')
-};
 
 module.exports = {
   register,
